@@ -40,7 +40,6 @@ build/
 *.env
 !.env.example
 application-dev.properties
-application-prod.properties
 
 ### Logs ###
 *.log
