@@ -4,7 +4,7 @@
     "builder": "NIXPACKS"
   },
   "deploy": {
-    "startCommand": "java -jar target/mentalcheck-backend-0.0.1-SNAPSHOT.jar",
-    "healthcheckPath": "/api/actuator/health"
+    "startCommand": "java -jar app.jar",
+    "healthcheckPath": "/api/actuator/info"
   }
 }
