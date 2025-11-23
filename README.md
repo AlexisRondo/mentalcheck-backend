@@ -69,7 +69,6 @@ Para execução local do projeto (opcional, caso o avaliador deseje):
 
 3. **Configuração de ambiente:**
    - O arquivo `application-dev.properties` (incluído no pacote enviado na entrega) contém as configurações de acesso ao banco e parâmetros de autenticação.
-   - Esse arquivo deve ser usado conforme as orientações fornecidas em aula para execução local.
 
 4. **Execução:**
    - Rodar a classe principal `MentalCheckApplication` pela IDE  
@@ -98,5 +97,5 @@ O backend está publicado no Railway, permitindo acesso remoto à API e à docum
 ## 📌 Observações Finais
 
 - O foco deste projeto é o **backend** em Java, com exposição dos endpoints via Swagger.
-- A integração completa com o frontend não foi priorizada devido ao prazo de entrega, mas a API já está preparada para consumo por aplicações web ou mobile.
+- A integração completa com o frontend não foi priorizada devido ao prazo de entrega, mas a API já está preparada para consumo por aplicações web ou mobile, caso seja concluido a integração será enviado link para acesso ao video na entrega.
 - O deploy no Railway foi realizado para facilitar a **demonstração prática** do funcionamento da API durante a avaliação.
