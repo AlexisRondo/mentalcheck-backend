@@ -78,6 +78,9 @@ Para execução local do projeto (opcional, caso o avaliador deseje):
 
 O backend está publicado no Railway, permitindo acesso remoto à API e à documentação:
 
+- **Projeto no Railway:**
+  👉 `mentalcheck-backend-production.up.railway.app` 
+  
 - **Swagger UI (documentação da API):**  
   👉 `https://mentalcheck-backend-production.up.railway.app/api/swagger-ui.html`
 
