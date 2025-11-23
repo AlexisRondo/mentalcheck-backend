@@ -1,155 +1,102 @@
-# MentalCheck API - Sistema de Monitoramento de Bem-Estar Mental
+# 🧠 MentalCheck – Monitoramento de Bem-estar em Trabalho Híbrido
 
-Sistema desenvolvido como parte da Global Solution da FIAP para monitoramento de bem-estar mental em ambientes de trabalho híbrido.
+O **MentalCheck** é um sistema desenvolvido para acompanhar, de forma simples e contínua, o estado mental dos colaboradores em ambientes de trabalho híbrido. A partir de **check-ins diários rápidos**, o sistema coleta dados sobre o bem-estar dos usuários e gera **insights para gestores e líderes**, ajudando na identificação de possíveis sinais de burnout ou esgotamento e apoiando a criação de ações preventivas e de melhoria de qualidade de vida e produtividade.
 
-## 🚀 Tecnologias Utilizadas
+---
 
-- **Java 17**
-- **Spring Boot 3.3.5**
-- **Spring Data JPA** - Persistência com JPA/Hibernate
-- **Spring Security** - Autenticação JWT
-- **Bean Validation** - Validação de dados
-- **Oracle Database** - Banco de dados relacional
-- **Swagger/OpenAPI** - Documentação da API
-- **Maven** - Gerenciamento de dependências
+## 🎯 Objetivo do Projeto
 
-## 📋 Funcionalidades
+O projeto tem como principal objetivo:
 
-- ✅ API REST com arquitetura em camadas (Controller → Service → Repository)
-- ✅ Autenticação e autorização com JWT
-- ✅ CRUD completo com paginação, ordenação e filtros
-- ✅ Validações com Bean Validation (@NotNull, @Min, @Max, @Size)
-- ✅ Integração com Stored Procedures Oracle
-- ✅ Tratamento global de exceções
-- ✅ DTOs para entrada e saída de dados
-- ✅ Documentação automática com Swagger
+- Facilitar o **acompanhamento da saúde mental** dos colaboradores;
+- Fornecer aos gestores **indicadores e insights** sobre o time;
+- Apoiar a detecção precoce de **sinais de burnout e esgotamento**;
+- Contribuir para uma **melhor comunicação** entre líderes e equipe;
+- Estimular a adoção de **hábitos organizacionais mais saudáveis** com base em dados.
 
-## 🔧 Pré-requisitos
+---
 
-- Java 17 ou superior
-- Maven 3.8+
-- Banco de dados Oracle configurado e populado
+## 🏫 Contexto Acadêmico
 
-## ⚙️ Configuração e Execução
+- **Instituição:** FIAP  
+- **Curso:** Análise e Desenvolvimento de Sistemas  
+- **Disciplina / Projeto:** Global Solution – Java Advanced  
 
-### 1. Clone o repositório
-```bash
-git clone <url-do-repositorio>
-cd mentalcheck-backend
-```
+---
 
-### 2. Configure as variáveis de ambiente
+## ⚙️ Funcionalidades Principais
 
-Crie arquivo `.env` na raiz do projeto:
-```env
-DB_URL=jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL
-DB_USERNAME=rm560384
-DB_PASSWORD=<sua-senha>
-JWT_SECRET=<sua-chave-secreta>
-JWT_EXPIRATION=86400000
-```
+O backend do MentalCheck disponibiliza uma API REST que suporta as seguintes funcionalidades:
 
-### 3. Compile e execute
-```bash
-mvn clean install
-mvn spring-boot:run
-```
+- **Cadastro e login de usuário**;
+- **Registro de check-ins diários de bem-estar**;
+- **Listagem de check-ins por período**;
+- **Cadastro e consulta de dicas de bem-estar**;
+- **Geração de insights** com base nos dados de check-ins.
 
-### 4. Acesse a documentação
-```
-http://localhost:8080/api/swagger-ui.html
-```
+As entidades principais modeladas no sistema incluem:
 
-## 🔐 Autenticação
+- **Usuário**
+- **Checkin**
+- **Dica**
+- **Insight**
 
-A API utiliza JWT (JSON Web Token). Para acessar endpoints protegidos:
+---
 
-1. **Obtenha o token:**
-```bash
-POST /api/auth/login
-{
-  "email": "carlos.silva@empresa.com",
-  "senha": "senha123"
-}
-```
+## 🗄️ Banco de Dados e Infraestrutura
 
-2. **Use o token:**
-   - No Swagger: clique em "Authorize" e cole o token
-   - Ou adicione header: `Authorization: Bearer {seu-token}`
+- **Banco de Dados:** Oracle (ambiente FIAP)  
+- **Backend:** Java + Spring Boot  
+- **Hospedagem do Backend:** Railway (para acesso remoto e testes via Swagger)
 
-## 📚 Endpoints Principais
+O objetivo do deploy no Railway é permitir que o professor e a banca consigam **acessar e testar a API e a documentação Swagger** sem necessidade de configuração local completa.
 
-### Autenticação
-- `POST /auth/login` - Autenticar e obter token
+---
 
-### Usuários
-- `GET /usuarios` - Listar usuários (paginado)
-- `GET /usuarios/{id}` - Buscar por ID
-- `POST /usuarios` - Criar usuário
-- `POST /usuarios/procedure` ⭐ - Criar via stored procedure
-- `PUT /usuarios/{id}` - Atualizar
-- `DELETE /usuarios/{id}` - Deletar
+## ▶️ Execução Local (Ambiente de Desenvolvimento)
 
-### Check-ins
-- `GET /checkins` - Listar (paginado)
-- `GET /checkins/usuario/{id}` - Listar por usuário
-- `POST /checkins/procedure` ⭐ - Criar via stored procedure
-- `DELETE /checkins/{id}` - Deletar
+Para execução local do projeto (opcional, caso o avaliador deseje):
 
-### Dicas
-- `GET /dicas` - Listar (paginado)
-- `GET /dicas/categoria/{cat}` - Buscar por categoria
-- `POST /dicas/procedure` ⭐ - Criar via stored procedure
+1. **Pré-requisitos:**
+   - JDK 17 instalado;
+   - Maven configurado (ou uso do Maven embutido no IntelliJ IDEA);
+   - Acesso ao banco Oracle da FIAP.
 
-⭐ = Endpoints que demonstram integração com Stored Procedures Oracle
+2. **Importação do projeto:**
+   - Clonar ou baixar o repositório;
+   - Abrir o projeto em uma IDE como IntelliJ IDEA;
+   - Garantir que o projeto esteja configurado com **Java 17**.
 
-## 🏗️ Arquitetura
-```
-src/main/java/com/fiap/mentalcheck/
-├── controller/      # Controllers REST
-├── service/         # Lógica de negócio
-├── repository/      # Acesso a dados (JPA)
-├── entity/          # Entidades JPA
-├── dto/             # Data Transfer Objects
-├── mapper/          # Conversão Entity ↔ DTO
-├── security/        # JWT e configurações de segurança
-└── exception/       # Tratamento global de exceções
-```
+3. **Configuração de ambiente:**
+   - O arquivo `application-dev.properties` (incluído no pacote enviado na entrega) contém as configurações de acesso ao banco e parâmetros de autenticação.
+   - Esse arquivo deve ser usado conforme as orientações fornecidas em aula para execução local.
 
-## 🎯 Demonstração de Requisitos
+4. **Execução:**
+   - Rodar a classe principal `MentalCheckApplication` pela IDE  
+---
 
-### 1. API REST (40 pts)
-✅ CRUD completo com métodos HTTP corretos
-✅ Paginação e filtros implementados
-✅ Respostas HTTP apropriadas (200, 201, 400, 404, 500)
+## 🌐 Deploy em Produção (Railway)
 
-### 2. Persistência com JPA (20 pts)
-✅ Mapeamento completo de entidades
-✅ Relacionamentos (@ManyToOne, @OneToMany)
-✅ Repositories Spring Data JPA
+O backend está publicado no Railway, permitindo acesso remoto à API e à documentação:
 
-### 3. Bean Validation (10 pts)
-✅ Validações em DTOs (@NotNull, @Min, @Max, @Size)
-✅ Tratamento de erros de validação
+- **Swagger UI (documentação da API):**  
+  👉 `https://mentalcheck-backend-production.up.railway.app/api/swagger-ui.html`
 
-### 4. Stored Procedures (10 pts)
-✅ Integração com procedures Oracle via JPA
-✅ Endpoints `/procedure` demonstram chamadas diretas
+> Observação: o contexto base da aplicação é `/api`.  
+> O acesso deve ser feito pelos endpoints documentados no Swagger.
 
-### 5. Swagger (10 pts)
-✅ Documentação automática completa
-✅ Testável via interface web
-
-### 6. Deploy em Nuvem (10 pts)
-✅ Aplicação deployada no Azure
-✅ Vídeo demonstrando funcionamento
+---
 
 ## 👥 Equipe
 
-- RM560384 - Alexis Rondo
-- [Membro 2]
-- [Membro 3]
+- **Alexis Ronaldo Quirijota Rondo** – RM: 560384 – Turma: 2TDSPS  
+- **Lucas Aurélio de Brito Chicote** – RM: 559366 – Turma: 2TDSPA  
+- **Lucas Gomes de Araújo Lopes** – RM: 559607 – Turma: 2TDSPA  
 
-## 📹 Vídeo Demonstração
+---
 
-[Link do vídeo no YouTube demonstrando a aplicação funcionando]
+## 📌 Observações Finais
+
+- O foco deste projeto é o **backend** em Java, com exposição dos endpoints via Swagger.
+- A integração completa com o frontend não foi priorizada devido ao prazo de entrega, mas a API já está preparada para consumo por aplicações web ou mobile.
+- O deploy no Railway foi realizado para facilitar a **demonstração prática** do funcionamento da API durante a avaliação.
